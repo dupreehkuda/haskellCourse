@@ -111,7 +111,7 @@ startFormat :: Int -> Int
 startFormat start = if start < 0 then 0 else start
 
 subString :: Int -> Int -> [Char] -> [Char]
-subString start end str = if end < 0 then "" else take (end - start + 1) (drop (startFormat start) str)
+subString start end str = if end < 0 then "" else take (end - startFormat start + 1) (drop (startFormat start) str)
 
 {- | Write a function that takes a String — space separated numbers,
 and finds a sum of the numbers inside this string.

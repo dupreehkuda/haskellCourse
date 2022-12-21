@@ -98,13 +98,20 @@ the end (including).
 >>> subString 10 5 "Some very long String"
 ""
 
+>>> subString (-3) (-7) "Some very long String"
+""
+
+
 This function can accept negative start and end position. Negative
 start position can be considered as zero (e.g. substring from the
 first character) and negative end position should result in an empty
 string.
 -}
+startFormat :: Int -> Int
+startFormat start = if start < 0 then 0 else start
+
 subString :: Int -> Int -> [Char] -> [Char]
-subString start end str = take (end - start + 1) (drop start str)
+subString start end str = if end < 0 then "" else take (end - start + 1) (drop (startFormat start) str)
 
 {- | Write a function that takes a String — space separated numbers,
 and finds a sum of the numbers inside this string.

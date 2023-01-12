@@ -71,7 +71,7 @@ sumOfSquares x y = (x * x) + (y * y)
 -}
 -- DON'T FORGET TO SPECIFY THE TYPE IN HERE
 lastDigit :: Int -> Int
-lastDigit n = if n < 0 then mod (negate n) 10 else mod n 10
+lastDigit n = if n < 0 then mod (abs n) 10 else mod n 10
 
 {- | Write a function that takes three numbers and returns the
 difference between the biggest number and the smallest one.
@@ -108,7 +108,7 @@ first character) and negative end position should result in an empty
 string.
 -}
 startFormat :: Int -> Int
-startFormat start = if start < 0 then 0 else start
+startFormat start = max 0 start
 
 subString :: Int -> Int -> [Char] -> [Char]
 subString start end str = if end < 0 then "" else take (end - startFormat start + 1) (drop (startFormat start) str)
@@ -122,11 +122,11 @@ and finds a sum of the numbers inside this string.
 The string contains only spaces and/or numbers.
 -}
 
-toInt :: [String] -> [Int]
-toInt = map read
+-- toInt :: [String] -> [Int]
+-- toInt = map read
 
 strSum :: [Char] -> Int
-strSum str = sum (toInt (words str))
+strSum str = sum (map read (words str))
 
 {- | Write a function that takes a number and a list of numbers and
 returns a string, saying how many elements of the list are strictly
